@@ -1,3 +1,5 @@
+import ProductoCard from "./components/ProductoCard";
+
 function App() {
   return (
     <div>
