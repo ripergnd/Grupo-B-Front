@@ -1,7 +1,9 @@
 const API_URL = "http://localhost:8080/api/pedidos";
 
-export async function listarPedidos() {
-  const response = await fetch(API_URL);
+export async function listarPedidos(estado) {
+  const url = estado ? `${API_URL}?estado=${estado}` : API_URL;
+
+  const response = await fetch(url);
   return response.json();
 }
 

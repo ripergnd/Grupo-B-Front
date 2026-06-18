@@ -1,111 +1,129 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --color-fondo: #121212;
+  --color-superficie: #1e1e1e;
+  --color-tarjeta: #2a2a2a;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --color-principal: #ff8c42;
+  --color-principal-hover: #ff9f5a;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-secundario: #00c896;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --color-texto: #f5f5f5;
+  --color-texto-secundario: #b0b0b0;
+
+  --color-borde: #3a3a3a;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
+* {
   margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
   box-sizing: border-box;
 }
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+ul,
+ol {
+  list-style: none;
+}
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  min-height: 100vh;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+/* HOME */
+.home-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+.home-card {
+  background-color: var(--color-superficie);
+
+  padding: 4rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 0 5px var(--color-tarjeta);
 }
-p {
-  margin: 0;
+.home-card h1 {
+  color: var(--color-texto);
+
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+.home-buttons button {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+
+  border: none;
+  padding: 1rem;
+
+  border-radius: 12px;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+.home-buttons button:hover {
+  transform: translateY(-1px);
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  background-color: var(--color-principal-hover);
+  box-shadow: 0 0 5px var(--color-principal);
+}
+/* RECOGIDA PAGE */
+.recogida-page {
+  min-height: 100vh;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.titulo-recogida {
+  width: 100%;
+
+  background-color: var(--color-superficie);
+  color: white;
+  border-bottom: solid 2px var(--color-secundario);
+  text-align: center;
+
+  padding: 2rem 0;
+
+  margin-bottom: 3px;
+}
+.lista-pedidos-listos {
+  width: 100%;
+  max-width: 1200px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+.pedidos-listos {
+  background-color: var(--color-tarjeta);
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  text-align: center;
+
+  box-shadow: 0 0px 10px var(--color-secundario);
+
+  transition: transfor 0.2s ease;
+}
+.pedidos-listos h2 {
+  color: var(--color-texto);
+  font-size: 2rem;
+  letter-spacing: 2px;
 }
