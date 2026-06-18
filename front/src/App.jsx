@@ -1,12 +1,18 @@
-import ProductoCard from "./components/ProductoCard";
-import TerminalPage from "./pages/TerminalPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import TerminalPage from "./pages/TerminalPage";
+import RecogidaPage from "./pages/RecogidaPage";
+import Home from "./pages/Home";
 function App() {
   return (
-    <div>
-      <h1>MI API</h1>
-      <TerminalPage/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/terminal" element={<TerminalPage></TerminalPage>}></Route>
+        <Route path="/cocina"></Route>
+        <Route path="/recogida" element={<RecogidaPage></RecogidaPage>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
