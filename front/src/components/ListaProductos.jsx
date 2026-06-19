@@ -1,9 +1,28 @@
 import ProductoCard from "./ProductoCard";
 import { useState } from "react";
+import { agregarProducto } from "../services/APIPedido";
 
-function ListaProductos({ productos }) {
+function ListaProductos({ productos, pedido, setPedido }) {
     const [cantidades, setCantidades] = useState({})
-    const [pedido, setPedido] = useState([]);
+
+
+    const handleAgregarProducto = async (producto) => {
+        try{
+            const pedidoActualizado = await agregarProducto(pedido.id, [
+                {
+                    productoId: producto.id,
+                    cantidad: cantidades[producto.id] || 1,
+                },
+            ]);
+
+            console.log("Pedido actualizado:", pedidoActualizado)
+            setPedido(pedidoActualizado);
+
+            setCantidades({...cantidades, [producto.id]:""})
+        }catch (error) {
+            alert("No se pudo añadir el producto")
+        }
+    }
 
     return (
         <div>
@@ -18,14 +37,12 @@ function ListaProductos({ productos }) {
                     type="number"
                     min="1"
                     max={p.stock}
-                    value={cantidades[p.id] || 1}
+                    value={cantidades[p.id] ?? ""}
                     onChange={(e) => setCantidades({...cantidades, [p.id]: Number(e.target.value)})}
                 />
 
                 <button
-                    onClick={() => {
-                        setPedido([...pedido,{...p, cantidad: cantidades[p.id] || 1}])
-                    }}
+                    onClick={() => handleAgregarProducto(p)}
                 >
                     Añadir al pedido
                 </button>

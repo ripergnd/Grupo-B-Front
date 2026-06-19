@@ -37,8 +37,12 @@ export async function agregarProducto(pedidoId, productos) {
     },
     body: JSON.stringify(productos),
   });
+  const data = await response.json();
+  if(!response.ok){
+    throw new Error(data.error || "No se pudo añadir el producto");
+  }
 
-  return response.json();
+  return data;
 }
 
 export async function eliminarProducto(pedidoId, productoId) {
@@ -59,6 +63,10 @@ export async function cambiarEstado(pedidoId, estado) {
       method: "PATCH",
     },
   );
+  const data = await response.json();
+  if(!response.ok) {
+    throw new Error(data.error || "No se pudo finalizar el pedido")
+  }
 
-  return response.json();
+  return data;
 }
