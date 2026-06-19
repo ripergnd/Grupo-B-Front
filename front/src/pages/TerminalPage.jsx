@@ -22,6 +22,7 @@ function TerminalPage() {
 
   useEffect(() => {
     listarProductos({
+      activo: true,
       orden,
       categoriaId,
       desc

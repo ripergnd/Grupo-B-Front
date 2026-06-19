@@ -29,23 +29,32 @@ function ListaProductos({ productos, pedido, setPedido }) {
             <h1>MENÚ</h1>
             <ul>
     {productos.map(p => {
+        console.log(p)
         return (
             <li key={p.id}>
-                <ProductoCard producto={p} />
+                <ProductoCard producto={p} /> 
 
-                <input
+                {p.stock === 0 ? (
+                    <p>Sin stock</p>
+                ):(
+                <div>
+                    <input
                     type="number"
                     min="1"
                     max={p.stock}
                     value={cantidades[p.id] ?? ""}
                     onChange={(e) => setCantidades({...cantidades, [p.id]: Number(e.target.value)})}
-                />
-
+                />    
                 <button
                     onClick={() => handleAgregarProducto(p)}
                 >
                     Añadir al pedido
-                </button>
+                </button> 
+                </div>
+                                   
+                )}
+
+
             </li>
         );
     })}
