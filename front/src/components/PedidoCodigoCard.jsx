@@ -1,7 +1,7 @@
-function PedidoCodigoCard({ pedido }) {
+function PedidoCodigoCard({ pedido, onClick }) {
   return (
-    <li className="pedidos-listos">
-      <h2>{pedido.codigo}</h2>
+    <li className="card pedidos-codigo-card" onClick={onClick}>
+      <h2 className="pedido-codigo">{pedido.codigo}</h2>
     </li>
   );
 }
