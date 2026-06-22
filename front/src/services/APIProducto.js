@@ -15,6 +15,10 @@ export async function listarProductos(filtros = {}) {
     params.append("desc", filtros.desc);
   }
 
+  if(filtros.activo !== undefined) {
+    params.append("activo", filtros.activo)
+  }
+
   const response = await fetch(
     `${API_URL}?${params.toString()}`
   );
