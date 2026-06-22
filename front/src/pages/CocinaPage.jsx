@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import ListaPedidos from "../components/ListaPedidos";
-import { listarPedidos } from "../services/APIPedido";
+import { listarPedidos, cambiarEstado } from "../services/APIPedido";
 
 function CocinaPage() {
 
@@ -24,10 +24,46 @@ function CocinaPage() {
             setPedidos(lista);
         } catch (error) {
             console.error("Error al cargar pedidos:", error);
-            setPedidos([]); 
+            setPedidos([]);
         }
     }
+    async function actualizarEstado() {
+    if (!pedidoSeleccionado?.estado) {
+        console.log("No hay pedido o estado");
+        return;
+    }
 
+    const siguienteEstado = {
+        CREADO: "EN_PREPARACION",
+        EN_PREPARACION: "LISTO",
+        LISTO: "ENTREGADO",
+    };
+
+    const estadoActual = pedidoSeleccionado.estado;
+
+    console.log("Estado actual:", estadoActual);
+
+    const nuevoEstado = siguienteEstado[estadoActual];
+
+    console.log("Nuevo estado:", nuevoEstado);
+
+    if (!nuevoEstado) {
+        console.log("No hay transición válida");
+        return;
+    }
+
+    try {
+        const res = await cambiarEstado(pedidoSeleccionado.id, nuevoEstado);
+        console.log("OK backend:", res);
+
+        await cargarPedidos();
+        setPedidoSeleccionado(null);
+
+    } catch (error) {
+        console.error("ERROR backend:", error);
+    }
+}
+    
     return (
         <div className="cocina-page">
             <h1>Cocina</h1>
@@ -39,7 +75,6 @@ function CocinaPage() {
                 <option value="CREADO">Creado</option>
                 <option value="EN_PREPARACION">Preparando</option>
                 <option value="LISTO">Listo</option>
-                <option value="ENTREGADO">Entregado</option>
             </select>
 
             <ListaPedidos
@@ -61,6 +96,13 @@ function CocinaPage() {
                         ))}
                     </ul>
                 </div>
+            )}
+            {pedidoSeleccionado && (
+                <button onClick={actualizarEstado}>
+                    {pedidoSeleccionado.estado === "CREADO"
+                        ? "Comenzar preparación"
+                        : "Marcar como listo"}
+                </button>
             )}
         </div>
     );
