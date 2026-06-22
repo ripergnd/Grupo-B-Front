@@ -25,51 +25,66 @@ function TerminalPage() {
       activo: true,
       orden,
       categoriaId,
-      desc
+      desc,
     }).then(setProductos);
   }, [orden, categoriaId, desc]);
 
   const iniciarPedido = async () => {
-    try{ 
+    try {
       const pedidoCreado = await crearPedido({
-      terminalId: 1
-    });
+        terminalId: 1,
+      });
 
-    console.log("Pedido creado:", pedidoCreado)
+      console.log("Pedido creado:", pedidoCreado);
 
-
-    setPedido(pedidoCreado);
-    }catch (error) {
-      console.error(error)
-      alert(error.message)
+      setPedido(pedidoCreado);
+    } catch (error) {
+      console.error(error);
+      alert(error.message);
     }
-  }
+  };
 
-  if(!pedido) {
-    return(
-      <div>
-        <h2>Terminal de pedidos</h2>
-        <button onClick={iniciarPedido}>Iniciar Pedido</button>
+  if (!pedido) {
+    return (
+      <div className="home-page">
+        <div className="card terminal-start-card">
+          <h1 className="page-title">TERMINAL DE PEDIDOS</h1>
+
+          <button className="btn btn-primary" onClick={iniciarPedido}>
+            Iniciar Pedido
+          </button>
+        </div>
       </div>
-    )
+    );
   }
 
   return (
-    <>
-      <FiltroProductos
-        categorias={categorias}
-        categoriaId={categoriaId}
-        setCategoriaId={setCategoriaId}
-        orden={orden}
-        setOrden={setOrden}
-        desc={desc}
-        setDesc={setDesc}
-      />
+    <div className="terminal-layout">
+      <div className="productos-panel">
+        <FiltroProductos
+          categorias={categorias}
+          categoriaId={categoriaId}
+          setCategoriaId={setCategoriaId}
+          orden={orden}
+          setOrden={setOrden}
+          desc={desc}
+          setDesc={setDesc}
+        />
+        <div className="card menu-card">
+          <h2 className="menu-title">MENÚ</h2>
+          <div className="productos-scroll">
+            <ListaProductos
+              productos={productos}
+              pedido={pedido}
+              setPedido={setPedido}
+            />
+          </div>
+        </div>
+      </div>
 
-      <ListaProductos productos={productos} pedido={pedido} setPedido={setPedido} />
       <ProductosPedido pedido={pedido} setPedido={setPedido} />
-    </>
+    </div>
   );
 }
 
-export default TerminalPage
+export default TerminalPage;

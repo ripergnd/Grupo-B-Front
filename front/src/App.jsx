@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import TerminalPage from "./pages/TerminalPage";
+import CocinaPage from "./pages/CocinaPage";
 import RecogidaPage from "./pages/RecogidaPage";
 import Home from "./pages/Home";
-import CocinaPage from "./pages/CocinaPage";
+
+
 function App() {
   return (
     <BrowserRouter>

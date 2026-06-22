@@ -109,5 +109,3 @@ function CocinaPage() {
 }
 
 export default CocinaPage;
-
-

@@ -1,26 +1,42 @@
 import { useEffect, useState } from "react";
+import { listarPedidos, cambiarEstado } from "../services/APIPedido";
+import PedidoListoCard from "../components/PedidoCodigoCard";
 
-import { listarPedidos } from "../services/APIPedido";
 function RecogidaPage() {
   const [pedidos, setPedidos] = useState([]);
+
   useEffect(() => {
     listarPedidos("LISTO").then(setPedidos);
   }, []);
+
+  const pedidoEntregado = async (pedidoId) => {
+    try {
+      await cambiarEstado(pedidoId);
+
+      setPedidos((prev) => prev.filter((pedido) => pedido.id !== pedidoId));
+    } catch (error) {
+      alert("No se pudo actualizar el pedido");
+    }
+  };
   const pedidosOrdenados = [...pedidos].sort(
     (a, b) => new Date(a.horaPedido) - new Date(b.horaPedido),
   );
   return (
     <>
-      <h1 className="titulo-recogida">PEDIDOS LISTOS PARA RECOGER</h1>
+      <header className="page-header">
+        <h1 className="page-title">PEDIDOS LISTOS PARA RECOGER</h1>
+      </header>
       <div className="recogida-page">
         {pedidos.length === 0 ? (
           <p>No hay pedidos listos para recoger.</p>
         ) : (
           <ul className="lista-pedidos-listos">
             {pedidosOrdenados.map((pedido) => (
-              <li className="pedidos-listos" key={pedido.id}>
-                <h2>{pedido.codigo}</h2>
-              </li>
+              <PedidoListoCard
+                key={pedido.id}
+                pedido={pedido}
+                onClick={() => pedidoEntregado(pedido.id)}
+              />
             ))}
           </ul>
         )}
