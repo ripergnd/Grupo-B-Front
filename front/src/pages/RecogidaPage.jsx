@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { listarPedidos } from "../services/APIPedido";
+import PedidoListoCard from "../components/PedidoCodigoCard";
 function RecogidaPage() {
   const [pedidos, setPedidos] = useState([]);
   useEffect(() => {
@@ -18,9 +19,7 @@ function RecogidaPage() {
         ) : (
           <ul className="lista-pedidos-listos">
             {pedidosOrdenados.map((pedido) => (
-              <li className="pedidos-listos" key={pedido.id}>
-                <h2>{pedido.codigo}</h2>
-              </li>
+              <PedidoListoCard key={pedido.id} pedido={pedido} />
             ))}
           </ul>
         )}

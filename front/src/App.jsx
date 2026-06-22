@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TerminalPage from "./pages/TerminalPage";
 import RecogidaPage from "./pages/RecogidaPage";
 import Home from "./pages/Home";
+
 function App() {
   return (
     <BrowserRouter>
