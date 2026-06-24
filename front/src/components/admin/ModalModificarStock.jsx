@@ -1,44 +1,44 @@
 import { useState, useEffect } from "react";
 import { listarProductos, modificarStock } from "../../services/APIProducto";
 
-function ModalModificarStock ({ cerrar }){
-    const [productos, setProductos] = useState([]);
-    const [productoId, setProductoId] = useState("");
-    const [stock, setStock] = useState("");
+function ModalModificarStock({ cerrar }) {
+  const [productos, setProductos] = useState([]);
+  const [productoId, setProductoId] = useState("");
+  const [stock, setStock] = useState("");
 
-    useEffect(() => {
-        listarProductos().then(setProductos);
-    }, []);
+  useEffect(() => {
+    listarProductos().then(setProductos);
+  }, []);
 
-    const seleccionarProducto = (e) => {
-        const id = Number(e.target.value);
-        setProductoId(id);
-        
-        const producto = productos.find((p) => p.id===id);
+  const seleccionarProducto = (e) => {
+    const id = Number(e.target.value);
+    setProductoId(id);
 
-        if(producto) {
-            setStock(producto.stock);
-        }
-    };
+    const producto = productos.find((p) => p.id === id);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try{
-            const productoActualizado = await modificarStock(
-                productoId, 
-                Number(stock)
-            );
-            alert("Stock actualizado correctamente");
-            cerrar();
-        }catch (error){
-            alert(error.message);
-        }
-    };
+    if (producto) {
+      setStock(producto.stock);
+    }
+  };
 
-    return(
-         <div className="modal-fondo">
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const productoActualizado = await modificarStock(
+        productoId,
+        Number(stock)
+      );
+      alert("Stock actualizado correctamente");
+      cerrar();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  return (
+    <div className="modal-fondo">
       <div className="modal-contenido">
-        <button onClick={cerrar}>X</button>
+        <button className="modal-close" onClick={cerrar}>X</button>
 
         <h2>Modificar stock</h2>
 
@@ -73,13 +73,13 @@ function ModalModificarStock ({ cerrar }){
             />
           </label>
 
-          <button type="submit">
+          <button className="btn-primary" type="submit">
             Guardar stock
           </button>
         </form>
       </div>
     </div>
-    )
+  )
 
 }
 

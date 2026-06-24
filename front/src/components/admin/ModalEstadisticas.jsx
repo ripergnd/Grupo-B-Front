@@ -2,29 +2,29 @@ import { useState, useEffect } from "react";
 import { obtenerMasVendidos } from "../../services/APIProducto";
 import { obtenerTerminalMasUtilizada } from "../../services/APITerminal";
 
-function ModalEstadisticas({ cerrar }){
-    const [producto, setProducto] = useState(null);
-    const [terminal, setTerminal] = useState(null);
+function ModalEstadisticas({ cerrar }) {
+  const [producto, setProducto] = useState(null);
+  const [terminal, setTerminal] = useState(null);
 
-    useEffect(() => {
-        const cargarEstadisticas = async ()=>{
-            try{
-                const productos = await obtenerMasVendidos();
-                const terminal = await obtenerTerminalMasUtilizada();
+  useEffect(() => {
+    const cargarEstadisticas = async () => {
+      try {
+        const productos = await obtenerMasVendidos();
+        const terminal = await obtenerTerminalMasUtilizada();
 
-                setProducto(productos[0]);
-                setTerminal(terminal);
-            }catch (error){
-                alert(error.message);
-            }
-        };
-        cargarEstadisticas();
-    }, []);
+        setProducto(productos[0]);
+        setTerminal(terminal);
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+    cargarEstadisticas();
+  }, []);
 
-    return(
- <div className="modal-fondo">
+  return (
+    <div className="modal-fondo">
       <div className="modal-contenido">
-        <button onClick={cerrar}>X</button>
+        <button className="modal-close" onClick={cerrar}>X</button>
 
         <h2>Estadísticas</h2>
 
@@ -47,7 +47,7 @@ function ModalEstadisticas({ cerrar }){
         )}
       </div>
     </div>
-    )
+  )
 
 }
 

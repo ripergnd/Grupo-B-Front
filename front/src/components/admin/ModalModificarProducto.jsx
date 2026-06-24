@@ -3,73 +3,73 @@ import { listarProductos, actualizarProducto } from "../../services/APIProducto"
 import { listarCategorias } from "../../services/APICategoria";
 
 function ModalModificarProducto({ cerrar }) {
-    const [productos, setProductos] = useState([]);
-    const [categorias, setCategorias] = useState([]);
-    const [productoId, setProductoId] = useState("");
+  const [productos, setProductos] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [productoId, setProductoId] = useState("");
 
-    const [formData, setFormData] = useState({
-        nombre: "",
-        precio: "",
-        categoriaId: "",
+  const [formData, setFormData] = useState({
+    nombre: "",
+    precio: "",
+    categoriaId: "",
+    estado: true,
+    stock: "",
+  });
+
+  useEffect(() => {
+    listarProductos().then(setProductos);
+    listarCategorias().then(setCategorias);
+  }, []);
+
+  const seleccionarProducto = (e) => {
+    const id = e.target.value;
+    setProductoId(id);
+
+    const producto = productos.find((p) => p.id === Number(id));
+
+    if (producto) {
+      const categoria = categorias.find((c) => c.nombre === producto.categoriaNombre);
+
+      setFormData({
+        nombre: producto.nombre,
+        precio: producto.precio,
+        categoriaId: categoria ? categoria.id : "",
         estado: true,
-        stock: "",
-    });
-
-    useEffect(() => {
-        listarProductos().then(setProductos);
-        listarCategorias().then(setCategorias);
-    },[]);
-
-    const seleccionarProducto = (e) => {
-        const id = e.target.value;
-        setProductoId(id);
-        
-        const producto = productos.find((p) => p.id === Number(id));
-
-        if(producto) {
-            const categoria = categorias.find((c) => c.nombre === producto.categoriaNombre);
-
-            setFormData({
-                nombre: producto.nombre,
-                precio: producto.precio,
-                categoriaId: categoria ? categoria.id : "",
-                estado: true,
-                stock: producto.stock,
-            });
-        }    
-    };
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-
-        setFormData({
-            ...formData,
-            [name]: type === "checkbox" ? checked : value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try{
-            await actualizarProducto(productoId, {
-                nombre: formData.nombre,
-                precio: Number(formData.precio),
-                categoriaId: Number(formData.categoriaId),
-                estado: formData.estado,
-                stock: Number(formData.stock)
-            });
-            alert("Producto actualizado correctamente");
-            cerrar();
-        }catch (error){
-            alert(error.message)
-        }
+        stock: producto.stock,
+      });
     }
+  };
 
-    return(
-         <div className="modal-fondo">
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await actualizarProducto(productoId, {
+        nombre: formData.nombre,
+        precio: Number(formData.precio),
+        categoriaId: Number(formData.categoriaId),
+        estado: formData.estado,
+        stock: Number(formData.stock)
+      });
+      alert("Producto actualizado correctamente");
+      cerrar();
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  return (
+    <div className="modal-fondo">
       <div className="modal-contenido">
-        <button onClick={cerrar}>X</button>
+        <button className="modal-close" onClick={cerrar}>X</button>
 
         <h2>Modificar producto</h2>
 
@@ -140,12 +140,12 @@ function ModalModificarProducto({ cerrar }) {
               />
             </label>
 
-            <button type="submit">Guardar cambios</button>
+            <button className="btn-primary" type="submit">Guardar cambios</button>
           </form>
         )}
       </div>
     </div>
-    )
+  )
 }
 
 export default ModalModificarProducto

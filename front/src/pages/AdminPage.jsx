@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalCrearProducto from "../components/admin/ModalCrearProducto";
 import ModalModificarProducto from "../components/admin/ModalModificarProducto";
-import ModalModificarStock from "../components/admin/ModificarStock";
+import ModalModificarStock from "../components/admin/ModalModificarStock";
 import ModalDesactivarProducto from "../components/admin/ModalDesactivarProducto";
 import ModalEstadisticas from "../components/admin/ModalEstadisticas";
 import ModalCrearTerminal from "../components/admin/ModalCrearTerminal";

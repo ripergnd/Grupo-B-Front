@@ -21,7 +21,7 @@ function ModalDesactivarProducto({ cerrar }) {
     return (
         <div className="modal-fondo">
             <div className="modal-contenido">
-                <button onClick={cerrar}>X</button>
+                <button className="modal-close" onClick={cerrar}>X</button>
 
                 <h2>Desactivar producto</h2>
 
@@ -40,7 +40,7 @@ function ModalDesactivarProducto({ cerrar }) {
                     ))}
                 </select>
 
-                <button onClick={handleDesactivar}>
+                <button className="btn-danger" onClick={handleDesactivar}>
                     Desactivar
                 </button>
             </div>

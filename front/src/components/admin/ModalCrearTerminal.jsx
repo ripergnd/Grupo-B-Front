@@ -21,9 +21,9 @@ function ModalCrearTerminal({ cerrar }) {
     }
 
     return(
-        <div className="modal-fond">
+        <div className="modal-fondo">
             <div className="modal-contenido">
-                <button onClick={cerrar}>X</button>
+                <button className="modal-close" onClick={cerrar}>X</button>
 
                 <h2>Crear terminal</h2>
                 <form onSubmit={handleSubmit}>
@@ -35,7 +35,7 @@ function ModalCrearTerminal({ cerrar }) {
                             required />
                     </label>
                     
-                    <button type="submit">Crear terminal</button>
+                    <button className="btn-primary" type="submit">Crear terminal</button>
                 </form>
             </div>
         </div>
