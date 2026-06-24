@@ -32,7 +32,7 @@ function ProductosPedido({ pedido, setPedido }) {
       ]);
       setPedido(pedidoActualizado);
     } catch (error) {
-      alert("No se pudo disminuir la");
+      alert("No se pudo disminuir la cantidad");
     }
   };
 

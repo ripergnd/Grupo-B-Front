@@ -29,6 +29,12 @@ function Home() {
           >
             Recogida
           </button>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate("/admin")}>
+            Gestión
+          </button>
         </div>
       </div>
     </div>
