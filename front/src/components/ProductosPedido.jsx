@@ -66,7 +66,7 @@ function ProductosPedido({ pedido, setPedido }) {
       ) : (
         <ul>
           {pedido.productos.map((producto) => (
-            <li className="detalle-pedido">
+            <li key={producto.id} className="detalle-pedido">
               <span className="detalle-nombre">{producto.nombre}</span>
 
               <div className="detalle-actions">

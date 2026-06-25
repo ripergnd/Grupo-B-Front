@@ -37,7 +37,9 @@ body {
   border-radius: 12px;
   padding: 2rem;
 }
-
+.card-title {
+  padding: 2rem;
+}
 .btn {
   border: none;
   border-radius: 12px;
@@ -152,33 +154,38 @@ body {
   margin-bottom: 1rem;
 }
 .home-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+  gap: 1.5rem;
   justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 .home-buttons button {
   background-color: var(--color-principal);
   color: var(--color-texto);
 
   border: none;
-  padding: 1rem;
+  border-radius: 16px;
 
-  border-radius: 12px;
+  min-height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-size: 1.5rem;
   font-weight: bold;
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .home-buttons button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-4px);
 
   background-color: var(--color-principal-hover);
-  box-shadow: 0 0 5px var(--color-principal);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* TERMINAL*/
@@ -190,8 +197,11 @@ body {
   padding: 2rem;
 }
 .terminal-start-card {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 6rem;
   gap: 2rem;
 }
 .productos-panel {

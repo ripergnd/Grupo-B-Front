@@ -15,7 +15,7 @@ function RecogidaPage() {
 
       setPedidos((prev) => prev.filter((pedido) => pedido.id !== pedidoId));
     } catch (error) {
-      alert("No se pudo actualizar el pedido");
+      alert(error.message);
     }
   };
   const pedidosOrdenados = [...pedidos].sort(
