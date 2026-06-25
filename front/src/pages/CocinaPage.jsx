@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-
+import ModalCocina from "../components/ModalCocina";
 import ListaPedidos from "../components/ListaPedidos";
 import { listarPedidos, cambiarEstado } from "../services/APIPedido";
 
 function CocinaPage() {
 
-    const [estado, setEstado] = useState("CREADO");
+    const [estado, setEstado] = useState("FINALIZADO");
     const [pedidos, setPedidos] = useState([]);
     const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
-
+    const [modalActivo, setModalActivo] = useState(false);
 
     useEffect(() => {
         cargarPedidos();
@@ -18,51 +18,23 @@ function CocinaPage() {
         try {
             const data = await listarPedidos(estado);
 
-            const lista = Array.isArray(data)
-                ? data : data?.pedidos || [];
-
-            setPedidos(lista);
+            setPedidos(data);
         } catch (error) {
-            console.error("Error al cargar pedidos:", error);
-            setPedidos([]);
+            alert(error.message);
+            
         }
     }
     async function actualizarEstado() {
-    if (!pedidoSeleccionado?.estado) {
-        console.log("No hay pedido o estado");
-        return;
+        try{
+            await cambiarEstado(pedidoSeleccionado.id);
+            setPedidoSeleccionado(null);
+            setModalActivo(false);
+            cargarPedidos();
+        } catch (error) {
+            alert(error.message);
+        }
     }
 
-    const siguienteEstado = {
-        CREADO: "EN_PREPARACION",
-        EN_PREPARACION: "LISTO",
-        LISTO: "ENTREGADO",
-    };
-
-    const estadoActual = pedidoSeleccionado.estado;
-
-    console.log("Estado actual:", estadoActual);
-
-    const nuevoEstado = siguienteEstado[estadoActual];
-
-    console.log("Nuevo estado:", nuevoEstado);
-
-    if (!nuevoEstado) {
-        console.log("No hay transición válida");
-        return;
-    }
-
-    try {
-        const res = await cambiarEstado(pedidoSeleccionado.id, nuevoEstado);
-        console.log("OK backend:", res);
-
-        await cargarPedidos();
-        setPedidoSeleccionado(null);
-
-    } catch (error) {
-        console.error("ERROR backend:", error);
-    }
-}
     
     return (
         <div className="cocina-page">
@@ -72,38 +44,20 @@ function CocinaPage() {
                 value={estado}
                 onChange={(e) => setEstado(e.target.value)}
             >
-                <option value="CREADO">Creado</option>
+                <option value="FINALIZADO">Creado</option>
                 <option value="EN_PREPARACION">Preparando</option>
-                <option value="LISTO">Listo</option>
+                
             </select>
 
             <ListaPedidos
                 pedidos={pedidos}
-                onSelect={setPedidoSeleccionado}
+                setPedidoSeleccionado = {setPedidoSeleccionado}
+                setModalActivo = {setModalActivo}
             />
-
-            {pedidoSeleccionado && (
-                <div className="detalle-pedido">
-                    <h2>Pedido #{pedidoSeleccionado.id}</h2>
-                    <p>Estado: {pedidoSeleccionado.estado}</p>
-
-                    <h3>Productos</h3>
-                    <ul>
-                        {(pedidoSeleccionado.productos ?? []).map((p) => (
-                            <li key={p.id}>
-                                {p.nombre} x {p.cantidad}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-            {pedidoSeleccionado && (
-                <button onClick={actualizarEstado}>
-                    {pedidoSeleccionado.estado === "CREADO"
-                        ? "Comenzar preparación"
-                        : "Marcar como listo"}
-                </button>
-            )}
+            {modalActivo && (<ModalCocina pedido = {pedidoSeleccionado}
+             cerrar = {()=> setModalActivo (false)} 
+             actualizarEstado = {actualizarEstado}>  </ModalCocina>)}
+           
         </div>
     );
 }

@@ -56,9 +56,9 @@ export async function eliminarProducto(pedidoId, productoId) {
   return response.json();
 }
 
-export async function cambiarEstado(pedidoId, estado) {
+export async function cambiarEstado(pedidoId) {
   const response = await fetch(
-    `${API_URL}/${pedidoId}/estado?estado=${estado}`,
+    `${API_URL}/${pedidoId}/estado`,
     {
       method: "PATCH",
     },
