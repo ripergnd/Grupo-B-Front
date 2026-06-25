@@ -1,7 +1,7 @@
 function PedidoCard({ pedido, onClick }) {
     return (
         <div className="pedido-card">
-            <h3>Pedido #{pedido.id}</h3>
+            <h3>{pedido.codigo}</h3>
 
             <p><strong>Estado:</strong> {pedido.estado}</p>
 

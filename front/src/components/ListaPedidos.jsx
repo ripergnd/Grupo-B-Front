@@ -1,6 +1,6 @@
 import PedidoCard from "./PedidoCard";
 
-function ListaPedidos({ pedidos, onSelect }) {
+function ListaPedidos({ pedidos, setPedidoSeleccionado, setModalActivo }) {
   if (pedidos.length === 0) {
     return <p>No hay pedidos.</p>;
   }
@@ -11,7 +11,8 @@ function ListaPedidos({ pedidos, onSelect }) {
         <PedidoCard
           key={pedido.id}
           pedido={pedido}
-          onClick={() => onSelect(pedido)}
+          onClick={() =>  {setPedidoSeleccionado(pedido);
+            setModalActivo(true);}}
         />
       ))}
     </div>
