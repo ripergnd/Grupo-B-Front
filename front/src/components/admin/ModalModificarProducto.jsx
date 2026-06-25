@@ -113,6 +113,16 @@ function ModalModificarProducto({ cerrar }) {
             </label>
 
             <label>
+              Stock:
+              <input type="number"
+              name="stock"
+              value={formData.stock}
+              onChange={handleChange}
+              min="0"
+              required />
+            </label>
+
+            <label>
               Categoría:
               <select
                 name="categoriaId"

@@ -1,10 +1,5 @@
-import {
-  agregarProducto,
-  eliminarProducto,
-  cambiarEstado,
-} from "../services/APIPedido";
+import { agregarProducto, eliminarProducto, cambiarEstado } from "../services/APIPedido";
 function ProductosPedido({ pedido, setPedido }) {
-  const productosPedido = pedido.productos || [];
   const aumentarCantidad = async (productoId) => {
     try {
       const pedidoActualizado = await agregarProducto(pedido.id, [
@@ -13,12 +8,9 @@ function ProductosPedido({ pedido, setPedido }) {
           cantidad: 1,
         },
       ]);
-
-      console.log(pedidoActualizado.productos);
-
       setPedido(pedidoActualizado);
     } catch (error) {
-      alert("No se pudo aumentar la cantidad");
+      alert(error.message);
     }
   };
 
@@ -32,16 +24,31 @@ function ProductosPedido({ pedido, setPedido }) {
       ]);
       setPedido(pedidoActualizado);
     } catch (error) {
-      alert("No se pudo disminuir la cantidad");
+      alert(error.message);
     }
   };
+
+  const cancelarPedido = async() => {
+    let confirmar = confirm("¿Seguro que quieres cancelar este pedido?");
+    if(!confirmar) return;
+
+    try{
+      for(const producto of pedido.productos){
+        await eliminarProducto(pedido.id, producto.id);
+      }
+      alert("Pedido cancelado");
+      setPedido(null);
+    }catch(error){
+      alert(error.message);
+    }
+  }
 
   const eliminarProductoPedido = async (productoId) => {
     try {
       const pedidoActualizado = await eliminarProducto(pedido.id, productoId);
       setPedido(pedidoActualizado);
     } catch (error) {
-      alert("No se pudo eliminar el producto");
+      alert(error.message);
     }
   };
 
@@ -59,14 +66,14 @@ function ProductosPedido({ pedido, setPedido }) {
   return (
     <div className="card cesta-card">
       <h2>Pedido actual: {pedido.codigo}</h2>
-      <p>Total: {pedido.precioTotal}€</p>
+      <p>Total: {pedido.precioTotal.toFixed(2)}€</p>
       <h3>Productos añadidos:</h3>
       {pedido.productos.length === 0 ? (
         <p>No se han añadido productos todavía</p>
       ) : (
         <ul>
           {pedido.productos.map((producto) => (
-            <li className="detalle-pedido">
+            <li className="detalle-pedido" key={producto.id}>
               <span className="detalle-nombre">{producto.nombre}</span>
 
               <div className="detalle-actions">
@@ -97,9 +104,11 @@ function ProductosPedido({ pedido, setPedido }) {
           ))}
         </ul>
       )}
-      <button className="btn btn-primary" onClick={finalizarPedido}>
+      {pedido.productos.length !== 0 && <button className="btn btn-primary" onClick={finalizarPedido}>
         Finalizar pedido
-      </button>
+      </button>}
+      <button className="btn btn-danger" onClick={cancelarPedido}>Cancelar</button>
+
     </div>
   );
 }
