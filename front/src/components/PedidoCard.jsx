@@ -1,15 +1,18 @@
 function PedidoCard({ pedido, onClick }) {
-    return (
-        <div className="pedido-card">
-            <h3>{pedido.codigo}</h3>
+  console.log(pedido);
+  return (
+    <div className="card cocina-card" onClick={onClick}>
+      <h3>{pedido.codigo}</h3>
 
-            <p><strong>Estado:</strong> {pedido.estado}</p>
+      <p>
+        <strong>Estado:</strong> {pedido.estado}
+      </p>
 
-            <p><strong>Productos:</strong> {pedido.productos?.length ?? 0}</p>
-
-            <button onClick={onClick}> Ver detalle </button>
-        </div>
-    );
+      <p>
+        <strong>Productos:</strong> {pedido.productos?.length ?? 0}
+      </p>
+    </div>
+  );
 }
 
 export default PedidoCard;

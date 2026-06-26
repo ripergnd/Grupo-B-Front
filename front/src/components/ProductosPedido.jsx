@@ -73,7 +73,11 @@ function ProductosPedido({ pedido, setPedido }) {
       ) : (
         <ul>
           {pedido.productos.map((producto) => (
+<<<<<<< HEAD
             <li className="detalle-pedido" key={producto.id}>
+=======
+            <li key={producto.id} className="detalle-pedido">
+>>>>>>> feature/panel-gestion-ui
               <span className="detalle-nombre">{producto.nombre}</span>
 
               <div className="detalle-actions">

@@ -6,13 +6,15 @@ function ListaPedidos({ pedidos, setPedidoSeleccionado, setModalActivo }) {
   }
 
   return (
-    <div className="lista-pedidos">
+    <div className="lista-pedidos-cocina">
       {pedidos.map((pedido) => (
         <PedidoCard
           key={pedido.id}
           pedido={pedido}
-          onClick={() =>  {setPedidoSeleccionado(pedido);
-            setModalActivo(true);}}
+          onClick={() => {
+            setPedidoSeleccionado(pedido);
+            setModalActivo(true);
+          }}
         />
       ))}
     </div>

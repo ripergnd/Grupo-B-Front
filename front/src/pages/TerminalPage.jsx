@@ -48,7 +48,7 @@ function TerminalPage() {
     return (
       <div className="home-page">
         <div className="card terminal-start-card">
-          <h1 className="page-title">TERMINAL DE PEDIDOS</h1>
+          <h1 className="card-title">TERMINAL DE PEDIDOS</h1>
 
           <button className="btn btn-primary" onClick={iniciarPedido}>
             Iniciar Pedido

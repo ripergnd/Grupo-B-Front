@@ -1,19 +1,18 @@
 :root {
-  --color-fondo: #121212;
-  --color-superficie: #1e1e1e;
-  --color-tarjeta: #2a2a2a;
+  --color-fondo: #e9edf2;
+  --color-superficie: #ffffff;
+  --color-tarjeta: #f3f5f7;
 
-  --color-principal: #ff8c42;
-  --color-principal-hover: #ff9f5a;
+  --color-principal: #7c99da;
+  --color-principal-hover: #3b82f6;
 
-  --color-secundario: #00c896;
+  --color-secundario: #6eb49d;
 
-  --color-texto: #f5f5f5;
-  --color-texto-secundario: #b0b0b0;
+  --color-texto: #1f2937;
+  --color-texto-secundario: #6b7280;
 
-  --color-borde: #3a3a3a;
+  --color-borde: #cbd5e1;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -34,10 +33,16 @@ body {
 
 .card {
   background-color: var(--color-superficie);
+
+  border: 1px solid var(--color-borde);
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
   border-radius: 12px;
+}
+.card-title {
   padding: 2rem;
 }
-
 .btn {
   border: none;
   border-radius: 12px;
@@ -106,7 +111,7 @@ body {
 
   color: var(--color-texto);
 
-  border-bottom: solid 2px var(--color-secundario);
+  border-bottom: solid 2px var(--color-principal);
 
   text-align: center;
 
@@ -152,33 +157,38 @@ body {
   margin-bottom: 1rem;
 }
 .home-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+  gap: 1.5rem;
   justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 .home-buttons button {
   background-color: var(--color-principal);
   color: var(--color-texto);
 
   border: none;
-  padding: 1rem;
+  border-radius: 16px;
 
-  border-radius: 12px;
+  min-height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-size: 1.5rem;
   font-weight: bold;
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .home-buttons button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-4px);
 
   background-color: var(--color-principal-hover);
-  box-shadow: 0 0 5px var(--color-principal);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* TERMINAL*/
@@ -190,8 +200,11 @@ body {
   padding: 2rem;
 }
 .terminal-start-card {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 6rem;
   gap: 2rem;
 }
 .productos-panel {
@@ -488,4 +501,90 @@ body {
 .modal-close:hover {
   color: var(--color-texto);
   border-color: var(--color-principal);
+}
+/* COCINA */
+.cocina-page {
+  min-height: 100vh;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.estado-selector {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+
+  margin: 2rem 0;
+}
+.btn-estado {
+  flex: 1;
+
+  height: 70px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 1.3rem;
+  font-weight: bold;
+
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+
+  transition: 0.2s;
+}
+.btn-estado.activo {
+  background-color: var(--color-principal);
+}
+.cocina-page {
+  padding-top: 0px;
+  margin-top: 10px;
+}
+.cocina-card {
+  width: 320px;
+  height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+.cocina-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 10px var(--color-principal);
+}
+.cocina-card button {
+  width: 100%;
+}
+.cocina-card h3 {
+  font-size: 1.6rem;
+  color: var(--color-principal);
+
+  text-align: center;
+
+  margin-bottom: 1rem;
+}
+.cocina-card p {
+  color: var(--color-texto-secundario);
+
+  font-size: 1.1rem;
+
+  text-align: center;
+}
+.lista-pedidos-cocina {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.lista-productos {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
 }

@@ -32,7 +32,8 @@ function Home() {
 
           <button
             className="btn btn-primary"
-            onClick={() => navigate("/admin")}>
+            onClick={() => navigate("/admin")}
+          >
             Gestión
           </button>
         </div>
