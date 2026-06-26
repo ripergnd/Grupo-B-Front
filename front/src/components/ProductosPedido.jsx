@@ -1,4 +1,8 @@
-import { agregarProducto, eliminarProducto, cambiarEstado } from "../services/APIPedido";
+import {
+  agregarProducto,
+  eliminarProducto,
+  cambiarEstado,
+} from "../services/APIPedido";
 function ProductosPedido({ pedido, setPedido }) {
   const aumentarCantidad = async (productoId) => {
     try {
@@ -28,20 +32,20 @@ function ProductosPedido({ pedido, setPedido }) {
     }
   };
 
-  const cancelarPedido = async() => {
+  const cancelarPedido = async () => {
     let confirmar = confirm("¿Seguro que quieres cancelar este pedido?");
-    if(!confirmar) return;
+    if (!confirmar) return;
 
-    try{
-      for(const producto of pedido.productos){
+    try {
+      for (const producto of pedido.productos) {
         await eliminarProducto(pedido.id, producto.id);
       }
       alert("Pedido cancelado");
       setPedido(null);
-    }catch(error){
+    } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
   const eliminarProductoPedido = async (productoId) => {
     try {
@@ -73,11 +77,7 @@ function ProductosPedido({ pedido, setPedido }) {
       ) : (
         <ul>
           {pedido.productos.map((producto) => (
-<<<<<<< HEAD
             <li className="detalle-pedido" key={producto.id}>
-=======
-            <li key={producto.id} className="detalle-pedido">
->>>>>>> feature/panel-gestion-ui
               <span className="detalle-nombre">{producto.nombre}</span>
 
               <div className="detalle-actions">
@@ -108,11 +108,14 @@ function ProductosPedido({ pedido, setPedido }) {
           ))}
         </ul>
       )}
-      {pedido.productos.length !== 0 && <button className="btn btn-primary" onClick={finalizarPedido}>
-        Finalizar pedido
-      </button>}
-      <button className="btn btn-danger" onClick={cancelarPedido}>Cancelar</button>
-
+      {pedido.productos.length !== 0 && (
+        <button className="btn btn-primary" onClick={finalizarPedido}>
+          Finalizar pedido
+        </button>
+      )}
+      <button className="btn btn-danger" onClick={cancelarPedido}>
+        Cancelar
+      </button>
     </div>
   );
 }

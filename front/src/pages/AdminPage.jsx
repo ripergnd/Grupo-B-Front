@@ -7,77 +7,6 @@ import ModalEstadisticas from "../components/admin/ModalEstadisticas";
 import ModalCrearTerminal from "../components/admin/ModalCrearTerminal";
 
 function AdminPage() {
-<<<<<<< HEAD
-    const [modalActivo, setModalActivo] = useState(null)
-    return (
-        <div className="home-page">
-            <div className="card home-card">
-                <h1>Panel de gestión</h1>
-
-                <button
-                    className="btn btn-primary"
-                    onClick={() => setModalActivo("crearProducto")}>
-                    Crear producto
-                </button>
-
-                <button
-                    className="btn btn-primary"
-                    onClick={() => setModalActivo("modificarProducto")}>
-                    Modificar productos
-                </button>
-
-                <button
-                    className="btn btn-primary"
-                    onClick={() => setModalActivo("modificarStock")}>
-                    Modificar stock
-                </button>
-
-                <button
-                    className="btn btn-primary"
-                    onClick={() => setModalActivo("desactivarProducto")}>
-                    Desactivar Productos
-                </button>
-
-                <button
-                    className="btn btn-primary"
-                    onClick={() => setModalActivo("crearTerminal")}>
-                    Crear terminal
-                </button>
-
-                <button
-                    className="btn btn-primary"
-                    onClick={() => setModalActivo("estadisticas")}>
-                    Ver estadísticas
-                </button>
-
-                {modalActivo === "crearProducto" && (
-                    <ModalCrearProducto cerrar={() => setModalActivo(null)} />
-                )}
-
-                {modalActivo === "modificarProducto" && (
-                    <ModalModificarProducto cerrar={() => setModalActivo(null)} />
-                )}
-
-                {modalActivo === "modificarStock" && (
-                    <ModalModificarStock cerrar={() => setModalActivo(null)} />
-                )}
-
-                {modalActivo === "desactivarProducto" && (
-                    <ModalDesactivarProducto cerrar={() => setModalActivo(null)} />
-                )}
-
-                {modalActivo === "crearTerminal" && (
-                    <ModalCrearTerminal cerrar={() => setModalActivo(null)} />
-                )}
-
-                {modalActivo === "estadisticas" && (
-                    <ModalEstadisticas cerrar={() => setModalActivo(null)} />
-                )}
-
-            </div>
-        </div>
-    )
-=======
   const [modalActivo, setModalActivo] = useState(null);
   return (
     <>
@@ -85,7 +14,7 @@ function AdminPage() {
         <h1 className="page-title">PANEL DE GESTION</h1>
       </header>
       <div className="recogida-page">
-        <ul className="lista-pedidos-listos">
+        <ul className="lista-pedidos-listos  ">
           <button
             className="btn btn-primary"
             onClick={() => setModalActivo("crearProducto")}
@@ -155,7 +84,6 @@ function AdminPage() {
       </div>
     </>
   );
->>>>>>> feature/panel-gestion-ui
 }
 
 export default AdminPage;
