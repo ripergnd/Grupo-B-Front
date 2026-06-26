@@ -70,13 +70,16 @@ body {
 }
 
 .btn-secondary {
-  background-color: var(--color-secundario);
+  background-color: var(--color-tarjeta);
 
   color: var(--color-texto);
 
   padding: 0.4rem 0.8rem;
 
   border-radius: 8px;
+}
+.btn-secondary:hover {
+  box-shadow: 0 0px 15px var(--color-principal-hover);
 }
 .btn-danger:hover {
   background-color: #c9302c;
