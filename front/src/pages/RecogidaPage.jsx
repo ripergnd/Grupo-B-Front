@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { listarPedidos, cambiarEstado } from "../services/APIPedido";
 import PedidoListoCard from "../components/PedidoCodigoCard";
+import useFavicon from "../components/UseFavicon";
 
 function RecogidaPage() {
   const [pedidos, setPedidos] = useState([]);
+
+  useFavicon("/favicons/favicon-recogida.svg", "Recogida");
 
   useEffect(() => {
     listarPedidos("LISTO").then(setPedidos);

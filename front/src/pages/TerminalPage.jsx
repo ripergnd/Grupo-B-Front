@@ -5,6 +5,7 @@ import { crearPedido } from "../services/APIPedido";
 import FiltroProductos from "../components/FiltroProductos";
 import ListaProductos from "../components/ListaProductos";
 import ProductosPedido from "../components/ProductosPedido";
+import useFavicon from "../components/UseFavicon";
 
 function TerminalPage() {
   const [productos, setProductos] = useState([]);
@@ -15,6 +16,8 @@ function TerminalPage() {
   const [desc, setDesc] = useState(false);
 
   const [pedido, setPedido] = useState(null);
+
+  useFavicon("/favicons/favicon-terminal.svg", "Terminal");
 
   useEffect(() => {
     listarCategorias().then(setCategorias);

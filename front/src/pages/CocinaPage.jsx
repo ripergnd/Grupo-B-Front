@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import ModalCocina from "../components/ModalCocina";
 import ListaPedidos from "../components/ListaPedidos";
 import { listarPedidos, cambiarEstado } from "../services/APIPedido";
+import useFavicon from "../components/UseFavicon";
 
 function CocinaPage() {
   const [estado, setEstado] = useState("FINALIZADO");
   const [pedidos, setPedidos] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
   const [modalActivo, setModalActivo] = useState(false);
+
+  useFavicon("/favicons/favicon-cocina.svg", "Cocina");
 
   useEffect(() => {
     cargarPedidos();
@@ -27,7 +30,7 @@ function CocinaPage() {
       await cambiarEstado(pedidoSeleccionado.id);
       setPedidoSeleccionado(null);
       setModalActivo(false);
-      cargarPedidos();
+      await cargarPedidos();
     } catch (error) {
       alert(error.message);
     }
@@ -48,9 +51,8 @@ function CocinaPage() {
           </button>
 
           <button
-            className={`btn btn-estado ${
-              estado === "EN_PREPARACION" ? "activo" : ""
-            }`}
+            className={`btn btn-estado ${estado === "EN_PREPARACION" ? "activo" : ""
+              }`}
             onClick={() => setEstado("EN_PREPARACION")}
           >
             En preparación
