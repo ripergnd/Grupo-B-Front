@@ -19,12 +19,12 @@ function ListaProductos({ productos, pedido, setPedido }) {
 
       setCantidades({ ...cantidades, [producto.id]: "" });
     } catch (error) {
-      alert("No se pudo añadir el producto");
+      alert(error.message);
     }
   };
 
   return (
-    <div className="productos-lista">
+    <div className="scroll-container">
       <ul>
         {productos.map((p) => (
           <li key={p.id} className="card producto-card">

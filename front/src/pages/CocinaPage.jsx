@@ -45,7 +45,7 @@ function CocinaPage() {
       <header className="page-header">
         <h1 className="page-title">COCINA</h1>
       </header>
-      <div className="cocina-page">
+      <div className="app-page cocina-page">
         <div className="estado-selector">
           <button
             className={`btn btn-estado ${estado === "FINALIZADO" ? "activo" : ""}`}
@@ -55,8 +55,9 @@ function CocinaPage() {
           </button>
 
           <button
-            className={`btn btn-estado ${estado === "EN_PREPARACION" ? "activo" : ""
-              }`}
+            className={`btn btn-estado ${
+              estado === "EN_PREPARACION" ? "activo" : ""
+            }`}
             onClick={() => setEstado("EN_PREPARACION")}
           >
             En preparación

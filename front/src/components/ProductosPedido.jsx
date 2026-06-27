@@ -68,7 +68,7 @@ function ProductosPedido({ pedido, setPedido }) {
   };
 
   return (
-    <div className="card cesta-card">
+    <div className="card cesta-card flex-column-gap">
       <h2>Pedido actual: {pedido.codigo}</h2>
       <p>Total: {pedido.precioTotal.toFixed(2)}€</p>
       <h3>Productos añadidos:</h3>

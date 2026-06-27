@@ -26,7 +26,7 @@ function ModalModificarStock({ cerrar }) {
     try {
       const productoActualizado = await modificarStock(
         productoId,
-        Number(stock)
+        Number(stock),
       );
       alert("Stock actualizado correctamente");
       cerrar();
@@ -37,22 +37,18 @@ function ModalModificarStock({ cerrar }) {
 
   return (
     <div className="modal-fondo">
-      <div className="modal-contenido">
-        <button className="modal-close" onClick={cerrar}>X</button>
+      <div className="modal-contenido flex-column-gap">
+        <button className="modal-close" onClick={cerrar}>
+          X
+        </button>
 
         <h2>Modificar stock</h2>
 
         <form onSubmit={handleSubmit}>
           <label>
             Producto:
-            <select
-              value={productoId}
-              onChange={seleccionarProducto}
-              required
-            >
-              <option value="">
-                Selecciona un producto
-              </option>
+            <select value={productoId} onChange={seleccionarProducto} required>
+              <option value="">Selecciona un producto</option>
 
               {productos.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -79,8 +75,7 @@ function ModalModificarStock({ cerrar }) {
         </form>
       </div>
     </div>
-  )
-
+  );
 }
 
-export default ModalModificarStock
+export default ModalModificarStock;
