@@ -10,6 +10,10 @@ function RecogidaPage() {
 
   useEffect(() => {
     listarPedidos("LISTO").then(setPedidos);
+
+    const interevalo = setInterval(listarPedidos, 5000);
+
+    return () => clearInterval(interevalo);
   }, []);
 
   const pedidoEntregado = async (pedidoId) => {

@@ -14,6 +14,10 @@ function CocinaPage() {
 
   useEffect(() => {
     cargarPedidos();
+
+    const interevalo = setInterval(cargarPedidos, 5000);
+
+    return () => clearInterval(interevalo);
   }, [estado]);
 
   async function cargarPedidos() {
