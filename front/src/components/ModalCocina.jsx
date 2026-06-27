@@ -16,7 +16,7 @@ function ModalCocina({ cerrar, pedido, actualizarEstado }) {
           {" "}
           {pedido.productos.map((p) => (
             <li key={p.id}>
-              {p.nombre} X {p.cantidad}
+              {p.nombre} × {p.cantidad}
             </li>
           ))}
         </ul>
