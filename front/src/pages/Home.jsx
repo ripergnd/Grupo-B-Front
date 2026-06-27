@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import useFavicon from "../components/UseFavicon";
 
 function Home() {
   const navigate = useNavigate();
+
+  useFavicon("/favicons/favicon-home.svg", "Inicio");
 
   return (
     <div className="home-page">

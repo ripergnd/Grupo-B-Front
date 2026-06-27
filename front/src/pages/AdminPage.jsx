@@ -5,9 +5,13 @@ import ModalModificarStock from "../components/admin/ModalModificarStock";
 import ModalDesactivarProducto from "../components/admin/ModalDesactivarProducto";
 import ModalEstadisticas from "../components/admin/ModalEstadisticas";
 import ModalCrearTerminal from "../components/admin/ModalCrearTerminal";
+import useFavicon from "../components/UseFavicon";
 
 function AdminPage() {
   const [modalActivo, setModalActivo] = useState(null);
+
+  useFavicon("/favicons/favicon-admin.svg", "Gestion");
+
   return (
     <>
       <header className="page-header">
