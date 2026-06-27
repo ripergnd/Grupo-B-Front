@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 function ModalCocina({ cerrar, pedido, actualizarEstado }) {
   return (
     <div className="modal-fondo">

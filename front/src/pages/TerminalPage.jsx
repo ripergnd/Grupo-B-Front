@@ -75,7 +75,7 @@ function TerminalPage() {
         />
         <div className="card menu-card">
           <h2 className="menu-title">MENÚ</h2>
-          <div className="productos-scroll">
+          <div className="scroll-container">
             <ListaProductos
               productos={productos}
               pedido={pedido}

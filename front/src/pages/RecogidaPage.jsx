@@ -29,7 +29,7 @@ function RecogidaPage() {
       <header className="page-header">
         <h1 className="page-title">PEDIDOS LISTOS PARA RECOGER</h1>
       </header>
-      <div className="recogida-page">
+      <div className="app-page recogida-page">
         {pedidos.length === 0 ? (
           <p>No hay pedidos listos para recoger.</p>
         ) : (
