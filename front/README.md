@@ -4,7 +4,7 @@ Frontend desarrollado con React para consumir la API REST del sistema de gestió
 
 ## Descripción
 
-Este proyecto implementa la interfaz de usuario del sistema de gestión de pedidos desarrollado en el backend.
+Este proyecto implementa la interfaz de usuario del sistema de gestión de pedidos desarrollado en el backend ubicado en el repositorio https://github.com/Sine46/Hackaboss-Proyecto-Grupo-B.
 
 Permite gestionar el flujo completo de un pedido:
 
